@@ -27,12 +27,12 @@ def fetch_transcript(url):
         )
         print("Here's an example of how I want the format.")
         print("---")
-        print(f"### Key Takeaways from {title}")
+        print(f"### Key Takeaways from {title} by {channel}")
         print(
             "**Main Concepts and Definitions:**\n- **[Concept 1]:** Provide a brief description explaining what this concept is about."
         )
         print(
-            f"**{channel}:**\n- **Dynamic vs. Static Traits:** Discuss how the topic behaves in different environments or scenarios."
+            "**Dynamic vs. Static Traits:** Discuss how the topic behaves in different environments or scenarios."
         )
         print(
             "**Operations and Mechanisms:**\n- **[Operation/Function 1]:** Describe what this operation does and its complexity or efficiency."
@@ -41,7 +41,7 @@ def fetch_transcript(url):
             "**Optimizations and Practical Considerations:**\n- **Efficiency Concerns:** Talk about how efficiency is achieved or compromised with this topic."
         )
         print(
-            "**Implementation Specifics (if applicable):**\n- **In [Language/Platform]:** How is this topic implemented or used in a specific programming language or platform?"
+            "**Implementation Specifics:**\n- **In [Language/Platform]:** How is this topic implemented or used in a specific programming language or platform?"
         )
         print(
             "**Conclusion and Summary:**\n- Summarize the main points discussed, reinforcing the key takeaways and their implications for practical use or further study."
