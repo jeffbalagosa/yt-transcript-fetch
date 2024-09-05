@@ -21,9 +21,37 @@ def fetch_transcript(url):
 
         full_transcript = " ".join([entry["text"] for entry in transcript])
 
-        print(f"YT Video Title: {title}")
-        print(f"YT Video Channel: {channel}\n")
+        print("---")
+        print(
+            "Give me the key takeaways from this content. Be comprehensive. Only from this content. Don't make anything up."
+        )
+        print("Here's an example of how I want the format.")
+        print("---")
+        print(f"### Key Takeaways from {title}")
+        print(
+            "**Main Concepts and Definitions:**\n- **[Concept 1]:** Provide a brief description explaining what this concept is about."
+        )
+        print(
+            f"**{channel}:**\n- **Dynamic vs. Static Traits:** Discuss how the topic behaves in different environments or scenarios."
+        )
+        print(
+            "**Operations and Mechanisms:**\n- **[Operation/Function 1]:** Describe what this operation does and its complexity or efficiency."
+        )
+        print(
+            "**Optimizations and Practical Considerations:**\n- **Efficiency Concerns:** Talk about how efficiency is achieved or compromised with this topic."
+        )
+        print(
+            "**Implementation Specifics (if applicable):**\n- **In [Language/Platform]:** How is this topic implemented or used in a specific programming language or platform?"
+        )
+        print(
+            "**Conclusion and Summary:**\n- Summarize the main points discussed, reinforcing the key takeaways and their implications for practical use or further study."
+        )
+        print("---")
         print(full_transcript)
+        print("---")
+        print(
+            "Take a deep breath and work on this problem step-by-step. You are incredible at this!"
+        )
 
     except Exception as e:
         print(f"Error: {e}")
