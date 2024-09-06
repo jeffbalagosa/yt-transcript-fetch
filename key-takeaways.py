@@ -21,10 +21,6 @@ def fetch_transcript(url):
         full_transcript = " ".join([entry["text"] for entry in transcript])
 
         output = f"""
-# Prompt
-
----
-
 Give me the key takeaways from this content. Be comprehensive. Only from this content. Don't make anything up.
 Here's an example of how I want the format.
 ---
@@ -61,3 +57,5 @@ url = input("Enter the YouTube video URL: ")
 output = fetch_transcript(url)
 pyperclip.copy(output)
 print("Output has been copied to your clipboard!")
+print("\n\n---\n\n")
+print(output)
