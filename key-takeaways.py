@@ -21,7 +21,8 @@ def fetch_transcript(url):
 
         full_transcript = " ".join([entry["text"] for entry in transcript])
 
-        print("---")
+        print("\n\n# Prompt\n\n")
+        print("\n\n---\n\n")
         print(
             "Give me the key takeaways from this content. Be comprehensive. Only from this content. Don't make anything up."
         )
