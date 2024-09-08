@@ -2,12 +2,32 @@ import os
 import sys
 from youtube_transcript_api import YouTubeTranscriptApi
 import pyperclip
-import re
+from urllib.parse import urlparse, parse_qs
 
 
-def get_video_id(url):
-    match = re.search(r"(?<=v=)[\w-]+|(?<=be/)[\w-]+", url)
-    return match.group(0) if match else None
+def get_video_id(url: str) -> str:
+    """
+    Extract the video ID from a YouTube URL.
+
+    Args:
+        url (str): The YouTube URL.
+
+    Returns:
+        str: The video ID if found, None otherwise.
+
+    Raises:
+        ValueError: If the input is not a string or not a valid YouTube URL.
+    """
+    if not isinstance(url, str):
+        raise ValueError("URL must be a string")
+
+    parsed_url = urlparse(url)
+    if "youtube.com" in parsed_url.netloc:
+        return parse_qs(parsed_url.query).get("v", [None])[0]
+    elif "youtu.be" in parsed_url.netloc:
+        return parsed_url.path.lstrip("/")
+    else:
+        return None
 
 
 def get_prompt(prompt_name=""):
@@ -36,7 +56,7 @@ def fetch_transcript(url, prompt_name=""):
         full_transcript = " ".join([entry["text"] for entry in transcript])
 
         prompt = get_prompt(prompt_name)
-        title_line = f"## Transcript of {title} by {channel}"
+        title_line = f"## Transcript of _{title}_ by {channel}"
         prompt_enhancement_line = "Take a deep breath and work on this problem step-by-step. You are incredible at this!"
 
         if not prompt:
