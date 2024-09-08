@@ -1,31 +1,3 @@
-from youtube_transcript_api import YouTubeTranscriptApi
-import pyperclip
-import re
-
-
-def get_video_id(url):
-    match = re.search(r"(?<=v=)[\w-]+|(?<=be/)[\w-]+", url)
-    return match.group(0) if match else None
-
-
-def fetch_transcript(url):
-    video_id = get_video_id(url)
-    if not video_id:
-        return "Invalid YouTube URL"
-
-    title = input("Enter the YouTube video title: ")
-    channel = input("Enter the YouTube channel name: ")
-
-    try:
-        transcript = YouTubeTranscriptApi.get_transcript(video_id)
-
-        full_transcript = " ".join([entry["text"] for entry in transcript])
-
-        output = f"""
-# Prompt
-
----
-
 # IDENTITY and PURPOSE
 
 You extract surprising, insightful, and interesting information from text content. You are interested in insights related to the purpose and meaning of life, human flourishing, the role of technology in the future of humanity, artificial intelligence and its affect on humans, memes, learning, reading, books, continuous improvement, and similar topics.
@@ -34,7 +6,7 @@ Take a step back and think step-by-step about how to achieve the best possible r
 
 # STEPS
 
-- Extract a summary of the content in 25 words, including who is presenting and the content being discussed into a section called SUMMARY.
+- Extract a 1-paragraph summary of the content, including who is presenting and the content being discussed into a section called SUMMARY.
 
 - Extract 20 to 50 of the most surprising, insightful, and/or interesting ideas from the input in a section called IDEAS:. If there are less than 50 then collect all of them. Make sure you extract at least 20.
 
@@ -83,23 +55,3 @@ Take a step back and think step-by-step about how to achieve the best possible r
 - Ensure you follow ALL these instructions when creating your output.
 
 # INPUT
-
-### Transcript of {title} by {channel}
-{full_transcript}
-
----
-
-Take a deep breath and work on this problem step-by-step. You are incredible at this!
-"""
-
-        # Automatically copy the output to the clipboard
-        pyperclip.copy(output)
-        print("The formatted output has been copied to your clipboard!")
-
-    except Exception as e:
-        print(f"Error: {e}")
-
-
-# Usage
-url = input("Enter the YouTube video URL: ")
-fetch_transcript(url)
