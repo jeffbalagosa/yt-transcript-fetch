@@ -1,6 +1,6 @@
 # YouTube Transcript Fetcher with Prompt Integration
 
-I took some inspiration from `danielmiessler`'s incredible [Fabric](https://github.com/danielmiessler/fabric.git) project. I've modified it to work with my own needs, since OpenAI's API is not free.
+I took some inspiration from [danielmiessler](https://github.com/danielmiessler)'s incredible [Fabric](https://github.com/danielmiessler/fabric.git) project. I've modified it to work with my own needs, since OpenAI's API is not free.
 
 This Python script extracts the transcript from a YouTube video and formats it with a user-defined prompt to use with any LLM chat interface. The final output is copied directly to your clipboard for ease of use. Optionally, you can enhance the output by selecting a predefined prompt from the `prompts` directory.
 
