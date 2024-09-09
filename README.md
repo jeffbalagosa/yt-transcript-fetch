@@ -91,6 +91,10 @@ The script uses Python's `logging` module to log warnings and errors, such as wh
 
 ---
 
+## Disclaimer
+
+Please note that this application is provided as-is, without any guarantee of support or maintenance. The developer will not provide assistance if you encounter issues while using the app. Additionally, be aware that YouTube may modify their API or website structure at any time, which could potentially affect the functionality of this script. Use at your own discretion and risk.
+
 ## License
 
 This project is licensed under the MIT License. See the full license below:
