@@ -56,9 +56,9 @@ Once your virtual environment is activated, install the required packages:
 pip install -r requirements.txt
 ```
 
-### 4. (Optional) Create the `prompts` directory
+### 4. (Optional) Add your own prompts to the `prompts` directory
 
-A `prompts/` directory stores any prompt files you want to use with the script. The prompts should be Markdown files with the `.md` extension (e.g., `prompts/my_prompt.md`).
+An included `prompts/` directory stores any prompt files you want to use with the script. The prompts should be Markdown files with the `.md` extension (e.g., `prompts/my_prompt.md`).
 
 ### 5. Run the script
 
