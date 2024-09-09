@@ -35,7 +35,7 @@ cd yt-transcript-fetch
 1. Open your terminal (Command Prompt or PowerShell).
 2. Run the following commands:
 
-```bash
+```powershell
 python -m venv venv
 .\venv\Scripts\activate
 ```
