@@ -3,6 +3,7 @@ import sys
 from youtube_transcript_api import YouTubeTranscriptApi
 import pyperclip
 from urllib.parse import urlparse, parse_qs
+import logging
 
 
 def get_video_id(url: str) -> str:
@@ -31,15 +32,34 @@ def get_video_id(url: str) -> str:
 
 
 def get_prompt(prompt_name=""):
+    """
+    Retrieves a prompt from a file in the "prompts" directory.
+
+    Args:
+        prompt_name (str, optional): The name of the prompt file (without the ".md" extension). Defaults to an empty string.
+
+    Returns:
+        str: The contents of the prompt file, or an empty string if the file is not found or an error occurs.
+    """
     if not prompt_name:
         return ""
 
+    if ".." in prompt_name or "/" in prompt_name:
+        logging.warning(f"Invalid prompt name: {prompt_name}")
+        return ""
+
     prompt_path = os.path.join("prompts", f"{prompt_name}.md")
-    if os.path.exists(prompt_path):
-        with open(prompt_path, "r") as file:
-            return file.read().strip()
-    else:
-        print(f"Prompt file '{prompt_name}.md' not found in the prompts directory.")
+    try:
+        if os.path.exists(prompt_path):
+            with open(prompt_path, "r") as file:
+                return file.read().strip()
+        else:
+            logging.warning(
+                f"Prompt file '{prompt_name}.md' not found in the prompts directory."
+            )
+            return ""
+    except IOError as e:
+        logging.error(f"Error reading prompt file: {e}")
         return ""
 
 
