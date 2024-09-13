@@ -1,6 +1,11 @@
 import os
 import sys
-from youtube_transcript_api import YouTubeTranscriptApi
+from youtube_transcript_api import (
+    YouTubeTranscriptApi,
+    NoTranscriptFound,
+    TranscriptsDisabled,
+    VideoUnavailable,
+)
 import pyperclip
 from urllib.parse import urlparse, parse_qs
 import logging
@@ -86,8 +91,14 @@ def fetch_transcript(url, prompt_name=""):
 
         return output
 
+    except NoTranscriptFound:
+        return "Error: No transcript found for this video."
+    except TranscriptsDisabled:
+        return "Error: Transcripts are disabled for this video."
+    except VideoUnavailable:
+        return "Error: The video is unavailable. It might be private or deleted."
     except Exception as e:
-        return f"Error: {e}"
+        return f"An unexpected error occurred: {str(e)}"
 
 
 # Usage
