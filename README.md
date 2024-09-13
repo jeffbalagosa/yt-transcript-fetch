@@ -67,16 +67,16 @@ An included `prompts/` directory stores any prompt files you want to use with th
 Use the following command to run the script:
 
 ```bash
-python main.py <YouTube_URL> [prompt_name]
+python main.py "<YouTube_URL>" "[prompt_name]"
 ```
 
-- `<YouTube_URL>`: The URL of the YouTube video.
-- `[prompt_name]`: (Optional) The name of a prompt file located in the `prompts/` directory (without the `.md` extension).
+- `<YouTube_URL>`: The URL of the YouTube video in quotes.
+- `[prompt_name]`: (Optional) The name of a prompt file located in the `prompts/` directory (without the `.md` extension) in quotes.
 
 For example:
 
 ```bash
-python main.py https://www.youtube.com/watch?v=dQw4w9WgXcQ extract-wisdom
+python main.py "https://www.youtube.com/watch?v=dQw4w9WgXcQ" "extract-wisdom"
 ```
 
 The app will then ask you for additional info, fetch the video transcript, and apply the prompt from `prompts/extract-wisdom.md`.
