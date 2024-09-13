@@ -9,6 +9,7 @@ from youtube_transcript_api import (
 import pyperclip
 from urllib.parse import urlparse, parse_qs
 import logging
+from typing import Optional
 
 
 def get_video_id(url: str) -> str:
@@ -36,12 +37,12 @@ def get_video_id(url: str) -> str:
         return None
 
 
-def get_prompt(prompt_name=""):
+def get_prompt(prompt_name: Optional[str] = "") -> str:
     """
     Retrieves a prompt from a file in the "prompts" directory.
 
     Args:
-        prompt_name (str, optional): The name of the prompt file (without the ".md" extension). Defaults to an empty string.
+        prompt_name (Optional[str]): The name of the prompt file (without the ".md" extension). Defaults to an empty string.
 
     Returns:
         str: The contents of the prompt file, or an empty string if the file is not found or an error occurs.
@@ -53,7 +54,7 @@ def get_prompt(prompt_name=""):
         logging.warning(f"Invalid prompt name: {prompt_name}")
         return ""
 
-    prompt_path = os.path.join("prompts", f"{prompt_name}.md")
+    prompt_path: str = os.path.join("prompts", f"{prompt_name}.md")
     try:
         if os.path.exists(prompt_path):
             with open(prompt_path, "r") as file:
@@ -68,26 +69,30 @@ def get_prompt(prompt_name=""):
         return ""
 
 
-def fetch_transcript(url, prompt_name=""):
+def fetch_transcript(url: str, prompt_name: Optional[str] = "") -> str:
     video_id = get_video_id(url)
     if not video_id:
         return "Invalid YouTube URL"
 
-    title = input("Enter the YouTube video title: ")
-    channel = input("Enter the YouTube channel name: ")
+    title: str = input("Enter the YouTube video title: ")
+    channel: str = input("Enter the YouTube channel name: ")
 
     try:
-        transcript = YouTubeTranscriptApi.get_transcript(video_id)
-        full_transcript = " ".join([entry["text"] for entry in transcript])
+        transcript: list = YouTubeTranscriptApi.get_transcript(video_id)
+        full_transcript: str = " ".join([entry["text"] for entry in transcript])
 
-        prompt = get_prompt(prompt_name)
-        title_line = f"## Transcript of _{title}_ by {channel}"
-        prompt_enhancement_line = "Take a deep breath and work on this problem step-by-step. You are incredible at this!"
+        prompt: str = get_prompt(prompt_name)
+        title_line: str = f"## Transcript of _{title}_ by {channel}"
+        prompt_enhancement_line: str = (
+            "Take a deep breath and work on this problem step-by-step. You are incredible at this!"
+        )
 
         if not prompt:
-            output = f"{title_line}\n{full_transcript}"
+            output: str = f"{title_line}\n{full_transcript}"
         else:
-            output = f"{prompt}\n\n---\n\n{title_line}\n\n{full_transcript}\n\n---\n\n{prompt_enhancement_line}"
+            output: str = (
+                f"{prompt}\n\n---\n\n{title_line}\n\n{full_transcript}\n\n---\n\n{prompt_enhancement_line}"
+            )
 
         return output
 
