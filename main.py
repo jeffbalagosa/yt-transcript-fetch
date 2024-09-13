@@ -70,6 +70,23 @@ def get_prompt(prompt_name: Optional[str] = "") -> str:
 
 
 def fetch_transcript(url: str, prompt_name: Optional[str] = "") -> str:
+    """
+    Fetches the transcript for a YouTube video and optionally applies a prompt.
+
+    Args:
+        url (str): The URL of the YouTube video.
+        prompt_name (Optional[str]): The name of the prompt file (without the ".md" extension). Defaults to an empty string.
+
+    Returns:
+        str: The transcript of the video, with the prompt applied if specified.
+
+    Raises:
+        ValueError: If the input URL is not a valid YouTube URL.
+        NoTranscriptFound: If no transcript is available for the video.
+        TranscriptsDisabled: If transcripts are disabled for the video.
+        VideoUnavailable: If the video is unavailable, e.g. due to being private or deleted.
+        Exception: If an unexpected error occurs during the transcript retrieval.
+    """
     video_id = get_video_id(url)
     if not video_id:
         return "Invalid YouTube URL"
